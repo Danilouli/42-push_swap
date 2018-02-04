@@ -1,37 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.c                                          :+:      :+:    :+:   */
+/*   ft_isnumstr.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/04 12:30:58 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/02/04 15:48:26 by dsaadia          ###   ########.fr       */
+/*   Created: 2018/02/04 14:39:46 by dsaadia           #+#    #+#             */
+/*   Updated: 2018/02/04 15:50:32 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-int main(int argc, char **argv) {
-	// int fd;
-	int	i;
-	int alen;
-	// char *line;
-	int *atab;
-
-	if (argc < 2)
-		return (1);
-	argv++;
-	i = 0;
-	// while (get_next_line(fd, &line))
-	// {
-	// 	ft_printf("Cmd : %s\n",line);
-	// }
-	atab = create_a(argv, &alen);
-	while (i < alen)
+int	ft_isnumstr(char *str)
+{
+	if (*str == '-' || *str == '+')
+		str++;
+	while (*str)
 	{
-		ft_printf("%d\n",atab[i]);
-		i++;
+		if (!ft_isdigit(*str))
+			return (0);
+		str++;
 	}
-	return (0);
+	return (1);
 }
