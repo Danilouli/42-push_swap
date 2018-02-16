@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/04 14:43:54 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/02/04 15:48:42 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/02/14 23:01:51 by schmurz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,21 +31,50 @@ static int	get_a_len(char **nums)
 	return (ret);
 }
 
-int *create_a(char **nums, int *len)
+t_pile create_a(char **nums)
 {
-	int *ret;
+	t_pile ret;
+	int *vals;
+	int len;
 	int i;
 
-	if ((*len = get_a_len(nums)) == -1)
-	 	return (NULL);
-	if (!(ret = (int*)malloc(*len * sizeof(int))))
-		return (NULL);
+	if (((len = get_a_len(nums)) == -1) || !(vals = (int*)malloc(len * sizeof(int))))
+	{
+		ret.len = len;
+		ret.vals = 0;
+		return (ret);
+	}
 	i = 0;
 	while (*nums)
 	{
-		ret[i] = (int)ft_atoi(*nums);
+		vals[i] = (int)ft_atoi(*nums);
 		nums++;
 		i++;
 	}
+	ret.len = len;
+	ret.vals = vals;
+	return (ret);
+}
+
+t_pile create_b(int blen)
+{
+	t_pile ret;
+	int *vals;
+	int i;
+
+	if (!(vals = (int*)malloc(blen * sizeof(int))))
+	{
+		ret.len = 0;
+		ret.vals = 0;
+		return (ret);
+	}
+	i = 0;
+	while (i < blen)
+	{
+		vals[i] = 0;
+		i++;
+	}
+	ret.len = 0;
+	ret.vals = vals;
 	return (ret);
 }
