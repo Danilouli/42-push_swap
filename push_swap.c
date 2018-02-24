@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 16:15:48 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/02/16 17:54:21 by schmurz          ###   ########.fr       */
+/*   Updated: 2018/02/24 19:47:41 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,156 +36,207 @@ int	ft_get_min(int *tab, int len)
 	return (min);
 }
 
-int ind_where_max_order(t_pile apile)
+int* max_order_in_tab(int *tab, int len, int *reslen)
 {
+	int *res;
 	int i;
-	int j;
-	int order;
-	int where_order;
+	int post_ct;
 	int k;
-	int val1;
-	int val2;
+	int j;
+	int l;
 
 	i = 0;
 	j = 0;
-	k = 0;
-	order = 0;
-	while (i < apile.len)
+	*reslen = 1;
+	res = (int*)malloc(sizeof(int)*len);
+	while (tab[i] < tab[i + 1])
 	{
-		j = 0;
-		k = i;
-		val1 = ((i >= (apile.len)) ? apile.vals[i - apile.len] : apile.vals[i]);
-		val2 = (((i + 1) >= (apile.len)) ? apile.vals[i + 1 - apile.len] : apile.vals[i + 1]);
-		while (val1 < val2)
-		{
-			j++;
-			i++;
-			val1 = ((i >= (apile.len)) ? apile.vals[i - apile.len] : apile.vals[i]);
-			val2 = (((i + 1) >= (apile.len)) ? apile.vals[i + 1 - apile.len] : apile.vals[i + 1]);
-		}
+		res[i] = tab[i];
 		i++;
-		if (j > order)
-		{
-			order = j;
-			where_order = k;
-		}
+		(*reslen)++;
 	}
-	return (where_order);
+	res[i] = tab[i];
+	i++;
+	while (i < len)
+	{
+		k = i;
+		post_ct = 1;
+		while (i < len - 1 && tab[i] < tab[i + 1])
+		{
+			post_ct++;
+			i++;
+		}
+		if (res[0] < tab[k] && (*reslen < post_ct || res[*reslen - post_ct] < tab[k]))
+		{
+			j = 1;
+			while (res[*reslen - j] > tab[k])
+			{
+				j++;
+			}
+			l = 1;
+			*reslen = (*reslen - j + 1 > 0) ? (*reslen - j + 1) : 1;
+			while (l <= post_ct)
+			{
+				res[*reslen + l - 1] = tab[k + l - 1];
+				l++;
+			}
+			*reslen = *reslen + post_ct;
+		}
+		i = k + 1;
+	}
+	return (res);
 }
 
-int	val_where_break(t_pile apile)
+void push_max_order(t_pile *apile, t_pile *bpile, int *maxtab, int maxtab_len)
 {
+	while (apile->len > maxtab_len)
+	{
+		if (!ft_in_array((apile->vals)[0], maxtab, maxtab_len))
+			push(apile, bpile, 1);
+		else
+			rotate(apile, 1);
+		if ((bpile->vals[0]) < (apile->vals[0]))
+		{
+			push(bpile, apile, 1);
+			rotate(apile, 1);
+		}
+		ft_putendl("----Pile A DANS LE MACHIN----");
+		view_pile(*apile);
+	}
+}
+
+int find_just_above(t_pile apile, int num, int *place)
+{
+	int i;
+	int max;
+	int min;
+
+	i = 0;
+	*place = 0;
+	max = ft_get_max(apile.vals, apile.len);
+	min = ft_get_min(apile.vals, apile.len);
+	while (i <= apile.len)
+	{
+		if ((num > max || num < min) && apile.vals[1] == min)
+			break ;
+		if (apile.vals[0] < num && num < apile.vals[1])
+			return (apile.vals[1]);
+		(*place)++;
+		i++;
+		rotate(&apile, 0);
+	}
+	return (min);
+}
+
+void re_push_good(t_pile *apile, t_pile *bpile)
+{
+	int jabove;
+	int place;
 	int i;
 
 	i = 0;
-	while (i < apile.len)
+	while (bpile->len > 0)
 	{
-		if (apile.vals[i] > apile.vals[i + 1])
-			return (apile.vals[i + 1]);
+		jabove = find_just_above(*apile, (bpile->vals)[0], &place);
+		if (place <= (apile->len) / 2)
+		{
+			while ((apile->vals)[0] != jabove)
+				rotate(apile, 1);
+		}
+		else
+		{
+			while ((apile->vals)[0] != jabove)
+				rev_rotate(apile, 1);
+		}
+		push(bpile, apile, 1);
 		i++;
 	}
-	return (0);
 }
 
-void push_keep_max(t_pile *apile, t_pile *bpile)
+void rotate_finish(t_pile *apile)
 {
-	int wb;
-	int i;
-	int first;
-	int br;
-	int max;
-	int ind;
-	int maxpassed;
-	int old_first;
-	int firstmaxpassed;
+	int min;
 
-	maxpassed = 0;
-	old_first = 0;
-	max = ft_get_max(apile->vals, apile->len);
-	br = 0;
-	wb = val_where_break(*apile);
-	ind = ind_where_max_order(*apile);
-	i = -1;
-	while (++i < ind)
-		rotate(apile);
-	ft_putendl("apres ind rot");
-	view_pile(*apile);
-	first = (apile->vals)[0];
-	wb = val_where_break(*apile);
-	ft_printf("First %d WB %d\n",first, wb);
-	while ((apile->vals)[0] != wb)
+	min = ft_get_min(apile->vals, apile->len);
+	if (min <= (apile->len) / 2)
 	{
-		rotate(apile);
+		while ((apile->vals)[0] != min)
+			rotate(apile, 1);
 	}
-	push(apile, bpile);
-	ft_putendl("apres excl wb");
-	view_pile(*apile);
-	while ((apile->vals)[0] != first)
+	else
 	{
-		ft_printf("tete %d\n",(apile->vals)[0]);
-		if ((apile->vals)[(apile->len - 1)] == max)
+		while ((apile->vals)[0] != min)
+			rev_rotate(apile, 1);
+	}
+}
+
+int* tab_max_order(t_pile apile, int *tablen)
+{
+	int k;
+	int j;
+	int *keeptab;
+	int *tab;
+
+	j = 0;
+	k = 0;
+	tab = 0;
+	keeptab = 0;
+	*tablen = 0;
+	while (j < apile.len)
+	{
+		tab = max_order_in_tab(apile.vals, apile.len, tablen);
+		if (*tablen > k)
 		{
-			ft_putendl("cas max !");
-			if (!maxpassed && (apile->vals)[0] < first)
-			{
-				ft_putendl("premier ok max");
-				old_first = first;
-				first = (apile->vals)[0];
-				rotate(apile);
-				maxpassed = 1;
-			}
-			else if (maxpassed && (apile->vals)[0] > first && (apile->vals)[0] < old_first)
-			{
-				ft_putendl("post ok max");
-				first = (apile->vals)[0];
-				rotate(apile);
-			}
-			else
-			{
-				ft_putendl("pas ok max");
-				push(apile, bpile);
-			}
-			ft_putendl("APILE");
-			view_pile(*apile);
-			ft_putendl("BPILE");
-			view_pile(*bpile);
+			k = *tablen;
+			keeptab = tab;
 		}
-		else if ((apile->vals)[0] < (apile->vals)[(apile->len - 1)])
-			push(apile, bpile);
-		else
-			rotate(apile);
+		rotate(&apile, 0);
+		j++;
 	}
+	*tablen = k;
+	return (keeptab);
 }
 
 int main(int argc, char **argv) {
 	int	i;
  	t_pile apile;
 	t_pile bpile;
-	int max;
-	int min;
-	int tmp;
 	int ind;
+	int *test;
 
 	if (argc < 2)
 		return (1);
 	argv++;
 	i = 0;
-	tmp = 0;
 	apile = create_a(argv);
 	bpile = create_b(apile.len);
-	max = ft_get_max(apile.vals, apile.len);
-	min = ft_get_min(apile.vals, apile.len);
 	ft_putendl("Pile B");
 	view_pile(bpile);
 	ft_putendl("Pile A");
 	view_pile(apile);
-	ft_printf("Max %d , Min %d\n", max, min);
-	ind = ind_where_max_order(apile);
-	ft_printf("Ind %d\n",ind);
-	push_keep_max(&apile, &bpile);
-	ft_putendl("Pile B");
-	view_pile(bpile);
-	ft_putendl("Pile A");
+	test = tab_max_order(apile, &ind);
+	push_max_order(&apile, &bpile, test, ind);
+	ft_putendl("Pile A apres que tri");
 	view_pile(apile);
+	ft_putendl("Pile B reste que tri");
+	view_pile(bpile);
+	re_push_good(&apile, &bpile);
+	ft_putendl("Pile A apres re_push_good");
+	view_pile(apile);
+	ft_putendl("Pile B apres re_push_good");
+	view_pile(bpile);
+	rotate_finish(&apile);
+	ft_putendl("Pile A apres rotate_finish");
+	view_pile(apile);
+	ft_putendl("Pile B apres rotate_finish");
+	view_pile(bpile);
+	ft_lstreverse(&g_ops);
+	while (g_ops)
+	{
+		i++;
+		// ft_putendl((char*)(g_ops->content));
+		g_ops = g_ops->next;
+	}
+	ft_printf("%d operations \n",i);
 	return (0);
 }

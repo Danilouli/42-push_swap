@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/04 14:43:54 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/02/14 23:01:51 by schmurz          ###   ########.fr       */
+/*   Updated: 2018/02/24 19:09:31 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ t_pile create_a(char **nums)
 	}
 	ret.len = len;
 	ret.vals = vals;
+	ret.name = 'A';
 	return (ret);
 }
 
@@ -76,5 +77,6 @@ t_pile create_b(int blen)
 	}
 	ret.len = 0;
 	ret.vals = vals;
+	ret.name = 'B';
 	return (ret);
 }

@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   visualizator.c                                     :+:      :+:    :+:   */
+/*   ft_in_array.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: schmurz <schmurz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/14 22:32:30 by schmurz           #+#    #+#             */
-/*   Updated: 2018/02/23 18:28:40 by dsaadia          ###   ########.fr       */
+/*   Created: 2018/02/24 15:30:47 by dsaadia           #+#    #+#             */
+/*   Updated: 2018/02/24 17:00:48 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void view_pile(t_pile pile)
+int	ft_in_array(int to_find, int *tab, int len)
 {
-  int i;
+	int i;
 
-  i = 0;
-  while (i < pile.len)
-  {
-    ft_printf("%d, ",pile.vals[i]);
-    i++;
-  }
-	ft_putchar('\n');
+	i = 0;
+	while (i < len)
+	{
+		if (tab[i] == to_find)
+			return (1);
+		i++;
+	}
+	return (0);
 }
