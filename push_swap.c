@@ -6,11 +6,25 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 16:15:48 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/02/24 19:47:41 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/02/25 11:50:15 by schmurz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int ft_is_sort(int *tab, int len)
+{
+	int i;
+
+	i = 0;
+	while (i < len - 1)
+	{
+		if (tab[i] > tab[i + 1])
+			return (0);
+		i++;
+	}
+	return (1);
+}
 
 int	ft_get_max(int *tab, int len)
 {
@@ -89,19 +103,85 @@ int* max_order_in_tab(int *tab, int len, int *reslen)
 
 void push_max_order(t_pile *apile, t_pile *bpile, int *maxtab, int maxtab_len)
 {
-	while (apile->len > maxtab_len)
+	int *keep;
+	int keeplen;
+	int min;
+	int max;
+	int i;
+	int j;
+	int final_len;
+	int rotate_b;
+	int swap_b;
+
+	keeplen = 0;
+	rotate_b = 0;
+	final_len = apile->len;
+	keep = (int*)malloc(sizeof(int)*(apile->len));
+	min = ft_get_min(apile->vals, apile->len);
+	max = ft_get_max(apile->vals, apile->len);
+	i = 30;
+	while (!(ft_is_sort(apile->vals, apile->len) && apile->len == final_len))
 	{
-		if (!ft_in_array((apile->vals)[0], maxtab, maxtab_len))
+		if (!ft_in_array((apile->vals)[0], maxtab, maxtab_len) && !ft_in_array((apile->vals)[0], keep, keeplen))
 			push(apile, bpile, 1);
 		else
-			rotate(apile, 1);
-		if ((bpile->vals[0]) < (apile->vals[0]))
 		{
-			push(bpile, apile, 1);
-			rotate(apile, 1);
+			if ((apile->vals[apile->len - 1]) == ft_get_max(apile->vals, apile->len)
+				||(apile->vals)[0] == ft_get_min(apile->vals, apile->len))
+			{
+				if ((bpile->vals[0]) < (apile->vals[0]) || (bpile->vals[0]) > ft_get_max(apile->vals, apile->len))
+				{
+					keep[keeplen] = bpile->vals[0];
+					push(bpile, apile, 1);
+					keeplen++;
+				}
+			}
+			else if ((bpile->vals)[0] == max)
+			{
+				if ((apile->vals[apile->len - 1]) == ft_get_max(apile->vals, apile->len)
+					&& (apile->vals)[0] == ft_get_min(apile->vals, apile->len))
+				{
+					keep[keeplen] = bpile->vals[0];
+					push(bpile, apile, 1);
+					keeplen++;
+				}
+			}
+			else if ((apile->vals)[apile->len - 1] < (bpile->vals)[0] && (bpile->vals)[0] < (apile->vals)[0] && (bpile->vals)[0] != min && (bpile->vals)[0] != max)
+			{
+				keep[keeplen] = bpile->vals[0];
+				push(bpile, apile, 1);
+				keeplen++;
+			}
+			else if (bpile->len > 1 && ((((apile->vals[apile->len - 1]) == ft_get_max(apile->vals, apile->len)
+				||(apile->vals)[0] == ft_get_min(apile->vals, apile->len))
+				&& ((bpile->vals[1]) < (apile->vals[0]) || (bpile->vals[1]) > ft_get_max(apile->vals, apile->len)))
+				|| ((apile->vals)[apile->len - 1] < (bpile->vals)[1] && (bpile->vals)[1] < (apile->vals)[0] && (bpile->vals)[1] != min && (bpile->vals)[1] != max)))
+				swap_b = 1;
+			else
+				rotate_b = 1;
+			if (rotate_b)
+				rrotate(apile, bpile, 1);
+			else if (swap_b)
+				swap(bpile, 1);
+			else
+				rotate(apile, 1);
+			rotate_b = 0;
+			swap_b = 0;
 		}
-		ft_putendl("----Pile A DANS LE MACHIN----");
-		view_pile(*apile);
+		// ft_putendl("----Pile A DANS LE MACHIN----");
+		// view_pile(*apile);
+		// ft_putendl("----Pile B DANS LE MACHIN----");
+		// view_pile(*bpile);
+		// ft_putendl("dans keep");
+		// j = 0;
+		// while (j < keeplen)
+		// {
+		// 	ft_printf("%d ,", keep[j]);
+		// 	j++;
+		// }
+		// ft_putchar('\n');
+		if (ft_is_sort(apile->vals, apile->len) && apile->len >= final_len)
+			break ;
 	}
 }
 
@@ -215,21 +295,29 @@ int main(int argc, char **argv) {
 	ft_putendl("Pile A");
 	view_pile(apile);
 	test = tab_max_order(apile, &ind);
+	i = 0;
+	ft_putendl("sous suitre trie");
+	while (i < ind)
+	{
+		ft_printf("%d ,",test[i]);
+		i++;
+	}
+	ft_putchar('\n');
 	push_max_order(&apile, &bpile, test, ind);
 	ft_putendl("Pile A apres que tri");
 	view_pile(apile);
 	ft_putendl("Pile B reste que tri");
 	view_pile(bpile);
-	re_push_good(&apile, &bpile);
-	ft_putendl("Pile A apres re_push_good");
-	view_pile(apile);
-	ft_putendl("Pile B apres re_push_good");
-	view_pile(bpile);
-	rotate_finish(&apile);
-	ft_putendl("Pile A apres rotate_finish");
-	view_pile(apile);
-	ft_putendl("Pile B apres rotate_finish");
-	view_pile(bpile);
+	// re_push_good(&apile, &bpile);
+	// ft_putendl("Pile A apres re_push_good");
+	// view_pile(apile);
+	// ft_putendl("Pile B apres re_push_good");
+	// view_pile(bpile);
+	// rotate_finish(&apile);
+	// ft_putendl("Pile A apres rotate_finish");
+	// view_pile(apile);
+	// ft_putendl("Pile B apres rotate_finish");
+	// view_pile(bpile);
 	ft_lstreverse(&g_ops);
 	while (g_ops)
 	{
