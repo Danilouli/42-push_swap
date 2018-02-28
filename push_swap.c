@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 16:15:48 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/02/27 23:20:30 by schmurz          ###   ########.fr       */
+/*   Updated: 2018/02/28 12:30:49 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,7 +207,6 @@ void push_max_order(t_pile *apile, t_pile *bpile, t_pile *keeppile)
 	int max;
 	int min_dist;
 	int final_len;
-	int j;
 	int lasta;
 	int ra;
 	int rra;
@@ -225,7 +224,12 @@ void push_max_order(t_pile *apile, t_pile *bpile, t_pile *keeppile)
 	is_sort = pile_is_sort(*apile);
 	while (!(is_sort && apile->len == final_len))
 	{
-		if (!ft_in_array((apile->vals)[0], keeppile->vals, keeppile->len) && ft_in_array((apile->vals)[1], keeppile->vals, keeppile->len)
+		if (!ft_in_array((apile->vals)[0], keeppile->vals, keeppile->len) && good_to_push(*apile, apile->vals[0], *keeppile))
+		{
+			keeppile->vals[keeppile->len] = apile->vals[0];
+			(keeppile->len)++;
+		}
+		else if (!ft_in_array((apile->vals)[0], keeppile->vals, keeppile->len) && ft_in_array((apile->vals)[1], keeppile->vals, keeppile->len)
 					&& (apile->vals)[0] > (apile->vals)[1] && find_just_above((apile->vals)[0], *keeppile) == find_just_above((apile->vals)[1], *keeppile))
 		{
 			keeppile->vals[keeppile->len] = apile->vals[0];
@@ -299,7 +303,7 @@ void push_max_order(t_pile *apile, t_pile *bpile, t_pile *keeppile)
 					lasta = 6;
 				}
 		}
-		else
+		else if (ft_in_array((apile->vals)[0], keeppile->vals, keeppile->len))
 		{
 			rotate(apile, 1);
 		}
