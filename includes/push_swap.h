@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/04 14:34:34 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/02/24 19:08:59 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/02/27 17:36:43 by schmurz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,12 @@ void rev_rotate(t_pile *pile, int wr);
 void rrev_rotate(t_pile *apile, t_pile *bpile, int wr);
 void push(t_pile *from_pile, t_pile *to_pile, int wr);
 void view_pile(t_pile pile);
+void rotate_nc(t_pile pile);
+void rev_rotate_nc(t_pile pile);
+t_pile  max_order_in_tab(int *x, int n);
+int ft_is_sort(int *tab, int len);
+int pile_is_sort(t_pile pile);
+int	good_to_push(t_pile apile, int num, t_pile kpile);
 
 t_list *g_ops;
 

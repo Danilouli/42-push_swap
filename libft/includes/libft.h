@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/13 18:38:26 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/02/04 15:39:39 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/02/27 18:53:50 by schmurz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,12 @@ int					ft_printf(const char *format, ...);
 int					ft_numberchars(const char *str, char c);
 int					ft_isnumstr(char *str);
 int					get_next_line(const int fd, char **line);
+int					ft_in_array(int to_find, int *tab, int len);
+int					*ft_int_tab_cpy(int *dest, const int *src, int n);
+void 				ft_swap_ints(int *a, int *b);
+void 				ft_intarr_rev(int **arr, int len);
+int					ft_intarr_max(int *tab, int len);
+int					ft_intarr_min(int *tab, int len);
+int					ft_min_nums(int arg_count, ...);
 void				ft_troll(void);
-
 #endif
