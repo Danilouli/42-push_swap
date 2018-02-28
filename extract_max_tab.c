@@ -6,7 +6,7 @@
 /*   By: schmurz <schmurz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/27 08:31:23 by schmurz           #+#    #+#             */
-/*   Updated: 2018/02/27 17:23:55 by schmurz          ###   ########.fr       */
+/*   Updated: 2018/02/28 18:50:31 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,23 +88,32 @@ t_pile  max_order_in_tab(int *x, int n)
   return (ret);
 }
 
-// int main(int argc, char **argv) {
-//  	t_pile apile;
-// 	int *test;
-//   t_pile maxpile;
-//   int i;
-//
-// 	if (argc < 2)
-// 		return (1);
-// 	argv++;
-// 	apile = create_a(argv);
-//   maxpile = max_order_in_tab(apile.vals, apile.len);
-//   ft_printf("maxpile len %d\n", maxpile.len);
-//   i = 0;
-//   while (i < maxpile.len)
-//   {
-//     ft_printf("%d , ",maxpile.vals[i]);
-//     i++;
-//   }
-// 	return (0);
-// }
+t_pile pile_max_order(t_pile apile)
+{
+	int k;
+	int j;
+	t_pile tmppile;
+	t_pile keeppile;
+
+	j = 0;
+	k = 0;
+	tmppile.len = 0;
+	tmppile.vals = 0;
+	keeppile.len = 0;
+	keeppile.vals = 0;
+	while (j <= apile.len)
+	{
+		tmppile = max_order_in_tab(apile.vals, apile.len);
+		if (tmppile.len > k)
+		{
+			k = tmppile.len;
+			free(keeppile.vals);
+			keeppile = tmppile;
+		}
+		else
+			free(tmppile.vals);
+		rotate_nc(apile);
+		j++;
+	}
+	return (keeppile);
+}

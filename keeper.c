@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 16:15:48 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/02/27 17:05:23 by schmurz          ###   ########.fr       */
+/*   Updated: 2018/02/28 17:21:54 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int min_dist(int n1, int n2, int n3, int n4) {
 		return (min);
 }
 
-int ft_is_sort(int *tab, int len)
+int (int *tab, int len)
 {
 	int i;
 
@@ -51,7 +51,7 @@ int pile_is_sort(t_pile pile)
 	i = 0;
 	while (i <= simpile.len)
 	{
-		if (ft_is_sort(simpile.vals, simpile.len))
+		if ((simpile.vals, simpile.len))
 		{
 			free(simpile.vals);
 			return (1);
@@ -388,7 +388,7 @@ void push_max_order(t_pile *apile, t_pile *bpile, int *keeptab, int keeptab_len)
 		// 	j++;
 		// }
 		// ft_putchar('\n');
-		if (ft_is_sort(apile->vals, apile->len) && apile->len >= final_len)
+		if ((apile->vals, apile->len) && apile->len >= final_len)
 			break ;
 	}
 }
@@ -581,4 +581,49 @@ int dist_reva_revb(t_pile apile, t_pile bpile, int *keeptab, int keeptab_len)
 	free(asimpile.vals);
 	free(bsimpile.vals);
 	return(i);
+}
+
+int main(int argc, char **argv) {
+	int	i;
+ 	t_pile apile;
+	t_pile bpile;
+	t_pile keeppile;
+	t_pile simpile;
+
+	if (argc < 2)
+		return (1);
+	argv++;
+	apile = create_a(argv);
+	simpile = copy_pile(apile);
+	bpile = create_b(apile.len);
+	ft_putendl("Pile B");
+	view_pile(bpile);
+	ft_putendl("Pile A");
+	view_pile(apile);
+	keeppile = pile_max_order(simpile);
+	ft_putendl("Extraite");
+	ft_printf("extraite len %d\n", keeppile.len);
+	view_pile(keeppile);
+	// int t = find_just_under(28, keeppile);
+	// ft_printf("junder %d\n",t);
+	push_max_order(&apile, &bpile, &keeppile);
+	ft_putendl("Pile A apres que tri");
+	view_pile(apile);
+	ft_putendl("Pile B reste que tri");
+	view_pile(bpile);
+	rotate_finish(&apile);
+	ft_putendl("Pile A apres rotate_finish");
+	view_pile(apile);
+	ft_putendl("Pile B apres rotate_finish");
+	view_pile(bpile);
+	ft_lstreverse(&g_ops);
+	i = 0;
+	while (g_ops)
+	{
+		i++;
+		ft_putendl((char*)(g_ops->content));
+		g_ops = g_ops->next;
+	}
+	ft_printf("%d operations \n",i);
+	return (0);
 }
