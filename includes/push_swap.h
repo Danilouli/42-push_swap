@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/04 14:34:34 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/03/01 15:58:53 by schmurz          ###   ########.fr       */
+/*   Updated: 2018/03/01 20:07:59 by schmurz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,9 @@ char **valid_one_input(char *av1);
 t_pile get_ps_apile(char **argv, int argc);
 void print_delete_g_ops(t_list *lst);
 int rotate_a_or_both(t_pile *bpile, t_pile *apile, t_pile *keeppile);
+int find_min_ind(t_pile pile);
+int min_max_stick(t_pile pile);
+int good_to_swap_big(t_pile pile);
 int final_rra_or_ra(t_pile apile);
 
 t_list *g_ops;
