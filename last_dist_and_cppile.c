@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 12:49:50 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/02/28 12:51:16 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/03/01 16:01:13 by schmurz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,33 @@ int find_just_under(int num, t_pile keeppile)
 		i++;
 	}
 	return (junder);
+}
+
+int final_rra_or_ra(t_pile apile)
+{
+	t_pile asimpile;
+	int min;
+	int ra;
+	int rra;
+
+	asimpile = copy_pile(apile);
+	ra = 0;
+	rra = 0;
+	min = ft_intarr_min(asimpile.vals, asimpile.len);
+	while ((asimpile.vals)[0] != min)
+	{
+		rotate_nc(asimpile);
+		ra++;
+	}
+	free(asimpile.vals);
+	asimpile = copy_pile(apile);
+	while ((asimpile.vals)[0] != min)
+	{
+		rev_rotate_nc(asimpile);
+		rra++;
+	}
+	free(asimpile.vals);
+	return ((ra < rra) ? 1 : 0);
 }
 
 t_pile copy_pile(t_pile pile)

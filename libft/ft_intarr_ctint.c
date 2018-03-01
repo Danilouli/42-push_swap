@@ -1,18 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_troll.c                                         :+:      :+:    :+:   */
+/*   ft_intarr_ctint.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
+/*   By: schmurz <schmurz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/14 21:32:02 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/03/01 17:40:24 by schmurz          ###   ########.fr       */
+/*   Created: 2018/03/01 16:13:34 by schmurz           #+#    #+#             */
+/*   Updated: 2018/03/01 16:14:48 by schmurz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-void	ft_troll(void)
+int ft_intarr_ctint(int *tab, int len, int to_count)
 {
-	return ;
+  int i;
+  int res;
+
+  i = 0;
+  res = 0;
+  while (i < len)
+  {
+    if (tab[i] == to_count)
+      res++;
+    i++;
+  }
+  return (res);
 }

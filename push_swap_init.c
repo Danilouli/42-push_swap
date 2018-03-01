@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/04 14:43:54 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/02/24 19:09:31 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/03/01 17:40:58 by schmurz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,20 @@ static int	get_a_len(char **nums)
 	return (ret);
 }
 
+int no_doubles(int *tab, int len)
+{
+	int i;
+
+	i = 0;
+	while (i < len)
+	{
+		if (ft_intarr_ctint(tab, len, tab[i]) >= 2)
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 t_pile create_a(char **nums)
 {
 	t_pile ret;
@@ -40,7 +54,7 @@ t_pile create_a(char **nums)
 
 	if (((len = get_a_len(nums)) == -1) || !(vals = (int*)malloc(len * sizeof(int))))
 	{
-		ret.len = len;
+		ret.len = -1;
 		ret.vals = 0;
 		return (ret);
 	}
@@ -51,6 +65,8 @@ t_pile create_a(char **nums)
 		nums++;
 		i++;
 	}
+	if (!no_doubles(vals, len))
+		len = -1;
 	ret.len = len;
 	ret.vals = vals;
 	ret.name = 'A';

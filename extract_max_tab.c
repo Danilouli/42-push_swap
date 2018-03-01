@@ -6,7 +6,7 @@
 /*   By: schmurz <schmurz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/27 08:31:23 by schmurz           #+#    #+#             */
-/*   Updated: 2018/02/28 18:50:31 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/03/01 18:31:32 by schmurz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ static int find_j(int *x, int *m, int l, int i)
   return (ret);
 }
 
-static int fill_m_and_p(t_pile *m, t_pile *p, int *x, int n) {
+static int fill_m_and_p(t_pile *m, t_pile *p, int *x, int n)
+{
   int i;
   int l;
   int j;
@@ -98,7 +99,6 @@ t_pile pile_max_order(t_pile apile)
 	j = 0;
 	k = 0;
 	tmppile.len = 0;
-	tmppile.vals = 0;
 	keeppile.len = 0;
 	keeppile.vals = 0;
 	while (j <= apile.len)

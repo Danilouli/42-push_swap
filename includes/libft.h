@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/13 18:38:26 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/02/28 18:17:48 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/03/01 16:15:20 by schmurz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,7 @@ int					ft_min_nums(int arg_count, ...);
 void 				ft_intarr_push(int **arr, int *len, int to_add);
 void 				ft_free_strtab(char **strtab);
 int 				ft_free_all(int nbpt, ...);
+int 				ft_intarr_ctint(int *tab, int len, int to_count);
 void				ft_troll(void);
 
 #endif

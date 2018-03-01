@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 16:15:48 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/02/28 20:28:04 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/03/01 16:01:26 by schmurz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,14 +76,16 @@ void push_max_order(t_pile *apile, t_pile *bpile, t_pile *keeppile)
 	is_sort = pile_is_sort(*apile);
 	while (!(is_sort && apile->len == final_len))
 	{
-		if (!first_cases(apile, bpile, keeppile))
+		if (final_len > 450 || !first_cases(apile, bpile, keeppile))
 		{
+			if (final_len > 450)
+				first_cases(apile, bpile, keeppile);
 			if (!ft_in_array((apile->vals)[0], keeppile->vals, keeppile->len))
 				push(apile, bpile, 1);
 			else if (bpile->len > 0 && is_sort)
 				min_mover(apile, bpile, keeppile);
 			else if (ft_in_array((apile->vals)[0], keeppile->vals, keeppile->len))
-				rotate(apile, 1);
+				(rotate_a_or_both(apile, bpile, keeppile)) ? rrotate(apile, bpile, 1) : rotate(apile, 1);
 		}
 		if (!is_sort)
 			is_sort = pile_is_sort(*apile);
@@ -92,10 +94,12 @@ void push_max_order(t_pile *apile, t_pile *bpile, t_pile *keeppile)
 
 void rotate_finish(t_pile *apile)
 {
+	int min_way;
 	int min;
 
 	min = ft_intarr_min(apile->vals, apile->len);
-	if (min < (apile->len) / 2)
+	min_way = final_rra_or_ra(*apile);
+	if (min_way)
 	{
 		while ((apile->vals)[0] != min)
 			rotate(apile, 1);
