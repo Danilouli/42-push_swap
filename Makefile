@@ -6,7 +6,7 @@
 #    By: schmurz <schmurz@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/01 16:28:01 by schmurz           #+#    #+#              #
-#    Updated: 2018/03/01 18:34:08 by schmurz          ###   ########.fr        #
+#    Updated: 2018/03/02 13:40:30 by schmurz          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,7 @@ $(LIBNAME):
 clean:
 	@rm -f $(CHECKER_OBJ) $(PUSH_SWAP_OBJ)
 	@make clean -C $(LIBDIR)
-	@printf "%b" "$(WARN_COLOR)Cleaned : Any .o file are annihilated$(NO_COLOR)\n"
+	@printf "%b" "$(WARN_COLOR)Cleaned : All .o file are annihilated$(NO_COLOR)\n"
 
 fclean: clean
 	@rm -f $(CHECKER) $(PUSH_SWAP)
