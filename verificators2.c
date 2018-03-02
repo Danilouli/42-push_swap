@@ -6,7 +6,7 @@
 /*   By: schmurz <schmurz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/01 18:33:50 by schmurz           #+#    #+#             */
-/*   Updated: 2018/03/01 18:33:59 by schmurz          ###   ########.fr       */
+/*   Updated: 2018/03/02 11:00:59 by schmurz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,43 @@ int rotate_a_or_both(t_pile *apile, t_pile *bpile, t_pile *keeppile)
 	}
 	free(asimpile.vals);
 	free(bsimpile.vals);
+	return (0);
+}
+
+int arr_sort_desc(int *tab, int len)
+{
+	int i;
+
+	i = 0;
+	while (i < len - 1)
+	{
+		if (tab[i] < tab[i + 1])
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+int pile_is_revsort(t_pile pile)
+{
+	int i;
+	t_pile simpile;
+
+	simpile.len = pile.len;
+	simpile.name = pile.name;
+	simpile.vals = (int*)malloc(sizeof(int)*(simpile.len));
+	ft_int_tab_cpy(simpile.vals, pile.vals, simpile.len);
+	i = 0;
+	while (i <= simpile.len)
+	{
+		if (arr_sort_desc(simpile.vals, simpile.len))
+		{
+			free(simpile.vals);
+			return (1);
+		}
+		rotate_nc(simpile);
+		i++;
+	}
+	free(simpile.vals);
 	return (0);
 }

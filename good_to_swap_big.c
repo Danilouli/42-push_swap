@@ -6,7 +6,7 @@
 /*   By: schmurz <schmurz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/01 19:48:16 by schmurz           #+#    #+#             */
-/*   Updated: 2018/03/01 20:07:55 by schmurz          ###   ########.fr       */
+/*   Updated: 2018/03/02 10:58:09 by schmurz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int min_max_stick(t_pile pile)
   return(0);
 }
 
-int good_to_swap_big(t_pile pile)
+int good_to_swap_big_a(t_pile pile)
 {
   if (pile.vals[0] > pile.vals[1])
   {
@@ -44,6 +44,19 @@ int good_to_swap_big(t_pile pile)
       return (1);
     if (pile.vals[0] == ft_intarr_max(pile.vals, pile.len) &&
       pile.vals[1] != ft_intarr_min(pile.vals, pile.len))
+      return (1);
+  }
+  return (0);
+}
+
+int good_to_swap_big_b(t_pile pile)
+{
+  if (pile.vals[0] < pile.vals[1])
+  {
+    if (pile.vals[0] != ft_intarr_min(pile.vals, pile.len))
+      return (1);
+    if (pile.vals[0] == ft_intarr_min(pile.vals, pile.len) &&
+      pile.vals[1] != ft_intarr_max(pile.vals, pile.len))
       return (1);
   }
   return (0);
