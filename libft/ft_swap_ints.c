@@ -6,13 +6,13 @@
 /*   By: schmurz <schmurz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/27 08:33:42 by schmurz           #+#    #+#             */
-/*   Updated: 2018/02/27 08:33:53 by schmurz          ###   ########.fr       */
+/*   Updated: 2018/03/03 11:15:57 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void ft_swap_ints(int *a, int *b)
+void	ft_swap_ints(int *a, int *b)
 {
 	int tmp;
 

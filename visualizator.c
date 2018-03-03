@@ -6,28 +6,28 @@
 /*   By: schmurz <schmurz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 22:32:30 by schmurz           #+#    #+#             */
-/*   Updated: 2018/02/28 17:16:27 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/03/03 12:11:20 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void view_pile(t_pile pile)
+void	view_pile(t_pile pile)
 {
-  int i;
+	int i;
 
-  i = 0;
-  while (i < pile.len - 1)
-  {
-    ft_printf("%d, ",pile.vals[i]);
-    i++;
-  }
+	i = 0;
+	while (i < pile.len - 1)
+	{
+		ft_printf("%d, ", pile.vals[i]);
+		i++;
+	}
 	if (pile.len > 0)
-		ft_printf("%d",pile.vals[i]);
+		ft_printf("%d", pile.vals[i]);
 	ft_putchar('\n');
 }
 
-void view_piles(t_pile apile, t_pile bpile)
+void	view_piles(t_pile apile, t_pile bpile)
 {
 	ft_putendl("***Pile A***");
 	view_pile(apile);

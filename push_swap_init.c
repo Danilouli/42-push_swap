@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/04 14:43:54 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/03/01 17:40:58 by schmurz          ###   ########.fr       */
+/*   Updated: 2018/03/03 11:54:54 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static int	get_a_len(char **nums)
 {
-	int ret;
-	long long nb;
+	int			ret;
+	long long	nb;
 
 	ret = 0;
 	while (*nums)
@@ -31,7 +31,7 @@ static int	get_a_len(char **nums)
 	return (ret);
 }
 
-int no_doubles(int *tab, int len)
+int			no_doubles(int *tab, int len)
 {
 	int i;
 
@@ -45,14 +45,15 @@ int no_doubles(int *tab, int len)
 	return (1);
 }
 
-t_pile create_a(char **nums)
+t_pile		create_a(char **nums)
 {
-	t_pile ret;
-	int *vals;
-	int len;
-	int i;
+	t_pile	ret;
+	int		*vals;
+	int		len;
+	int		i;
 
-	if (((len = get_a_len(nums)) == -1) || !(vals = (int*)malloc(len * sizeof(int))))
+	len = get_a_len(nums);
+	if ((len == -1) || !(vals = (int*)malloc(len * sizeof(int))))
 	{
 		ret.len = -1;
 		ret.vals = 0;
@@ -73,11 +74,11 @@ t_pile create_a(char **nums)
 	return (ret);
 }
 
-t_pile create_b(int blen)
+t_pile		create_b(int blen)
 {
-	t_pile ret;
-	int *vals;
-	int i;
+	t_pile	ret;
+	int		*vals;
+	int		i;
 
 	if (!(vals = (int*)malloc(blen * sizeof(int))))
 	{

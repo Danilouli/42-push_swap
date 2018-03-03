@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/13 18:38:26 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/03/01 16:15:10 by schmurz          ###   ########.fr       */
+/*   Updated: 2018/03/03 11:17:44 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,14 +115,14 @@ int					ft_isnumstr(char *str);
 int					get_next_line(const int fd, char **line);
 int					ft_in_array(int to_find, int *tab, int len);
 int					*ft_int_tab_cpy(int *dest, const int *src, int n);
-void 				ft_swap_ints(int *a, int *b);
-void 				ft_intarr_rev(int **arr, int len);
+void				ft_swap_ints(int *a, int *b);
+void				ft_intarr_rev(int **arr, int len);
 int					ft_intarr_max(int *tab, int len);
 int					ft_intarr_min(int *tab, int len);
 int					ft_min_nums(int arg_count, ...);
-void 				ft_intarr_push(int **arr, int *len, int to_add);
-void 				ft_free_strtab(char **strtab);
-int 				ft_free_all(int nbpt, ...);
-int 				ft_intarr_ctint(int *tab, int len, int to_count);
+void				ft_intarr_push(int **arr, int *len, int to_add);
+void				ft_free_strtab(char **strtab);
+int					ft_free_all(int nbpt, ...);
+int					ft_intarr_ctint(int *tab, int len, int to_count);
 void				ft_troll(void);
 #endif

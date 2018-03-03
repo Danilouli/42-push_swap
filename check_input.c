@@ -6,19 +6,19 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 15:16:51 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/03/01 18:09:51 by schmurz          ###   ########.fr       */
+/*   Updated: 2018/03/03 11:33:57 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int valid_input(char **argv)
+int			valid_input(char **argv)
 {
 	int verb;
 	int i;
 
 	i = 1;
-	verb = (ft_strequ(argv[1],"-v")) ? 1 : 0;
+	verb = (ft_strequ(argv[1], "-v")) ? 1 : 0;
 	i = (verb) ? (i + 1) : i;
 	if (!(argv[i]))
 		return (0);
@@ -32,16 +32,16 @@ int valid_input(char **argv)
 	return (1);
 }
 
-char **valid_one_input(char *av1)
+char		**valid_one_input(char *av1)
 {
-	int verb;
-	char **args;
-	int i;
+	int		verb;
+	char	**args;
+	int		i;
 
 	if (!(args = ft_strsplit(av1, ' ')))
 		return (0);
 	i = 0;
-	verb = (ft_strequ(args[0],"-v")) ? 1 : 0;
+	verb = (ft_strequ(args[0], "-v")) ? 1 : 0;
 	i = (verb) ? (i + 1) : i;
 	if (!(args[i]))
 	{
@@ -61,17 +61,18 @@ char **valid_one_input(char *av1)
 	return (args);
 }
 
-t_pile get_ps_apile(char **argv, int argc)
+t_pile		get_ps_apile(char **argv, int argc)
 {
-	char **one;
-	t_pile apile;
-	int i;
-	int verb;
+	char	**one;
+	t_pile	apile;
+	int		i;
+	int		verb;
 
 	i = -1;
-	if ((verb = 0) >= 0 && argc == 2 && (one = valid_one_input(argv[1])))
+	verb = 0;
+	if (argc == 2 && (one = valid_one_input(argv[1])))
 	{
-		verb = (ft_strequ(one[0],"-v")) ? 1 : 0;
+		verb = (ft_strequ(one[0], "-v")) ? 1 : 0;
 		apile = create_a(((verb) ? (one + 1) : one));
 		ft_free_strtab(one);
 	}
@@ -80,14 +81,14 @@ t_pile get_ps_apile(char **argv, int argc)
 	else
 	{
 		argv++;
-		verb = (ft_strequ(*argv,"-v")) ? 1 : 0;
+		verb = (ft_strequ(*argv, "-v")) ? 1 : 0;
 		argv = (verb) ? (argv + 1) : argv;
 		apile = create_a(argv);
 	}
 	return (apile);
 }
 
-void print_delete_g_ops(t_list *lst)
+void		print_delete_g_ops(t_list *lst)
 {
 	t_list *k;
 

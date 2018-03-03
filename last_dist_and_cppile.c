@@ -6,32 +6,33 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 12:49:50 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/03/01 16:01:13 by schmurz          ###   ########.fr       */
+/*   Updated: 2018/03/03 11:49:14 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int dist_rrev_rotating(t_pile apile, t_pile bpile, t_pile keeppile)
+int		dist_rrev_rotating(t_pile apile, t_pile bpile, t_pile keeppile)
 {
-	int i;
-	t_pile asimpile;
-	t_pile bsimpile;
+	int		i;
+	t_pile	asimpile;
+	t_pile	bsimpile;
 
 	asimpile = copy_pile(apile);
 	bsimpile = copy_pile(bpile);
 	i = 0;
-	while (!(good_to_push(asimpile, bsimpile.vals[0], keeppile)) && i <= apile.len)
+	while (!(good_to_push(asimpile, bsimpile.vals[0], keeppile))
+	&& i <= apile.len)
 	{
 		rrev_rotate(&asimpile, &bsimpile, 0);
 		i++;
 	}
 	free(bsimpile.vals);
 	free(asimpile.vals);
-	return(i);
+	return (i);
 }
 
-int find_just_above(int num, t_pile keeppile)
+int		find_just_above(int num, t_pile keeppile)
 {
 	int i;
 	int jabove;
@@ -53,7 +54,7 @@ int find_just_above(int num, t_pile keeppile)
 	return (jabove);
 }
 
-int find_just_under(int num, t_pile keeppile)
+int		find_just_under(int num, t_pile keeppile)
 {
 	int i;
 	int junder;
@@ -75,12 +76,12 @@ int find_just_under(int num, t_pile keeppile)
 	return (junder);
 }
 
-int final_rra_or_ra(t_pile apile)
+int		final_rra_or_ra(t_pile apile)
 {
-	t_pile asimpile;
-	int min;
-	int ra;
-	int rra;
+	t_pile	asimpile;
+	int		min;
+	int		ra;
+	int		rra;
 
 	asimpile = copy_pile(apile);
 	ra = 0;
@@ -102,13 +103,13 @@ int final_rra_or_ra(t_pile apile)
 	return ((ra < rra) ? 1 : 0);
 }
 
-t_pile copy_pile(t_pile pile)
+t_pile	copy_pile(t_pile pile)
 {
 	t_pile simpile;
 
 	simpile.len = pile.len;
 	simpile.name = pile.name;
-	simpile.vals = (int*)malloc(sizeof(int)*(simpile.len));
+	simpile.vals = (int*)malloc(sizeof(int) * (simpile.len));
 	simpile.vals = ft_int_tab_cpy(simpile.vals, pile.vals, simpile.len);
 	return (simpile);
 }

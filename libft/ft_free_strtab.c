@@ -6,13 +6,13 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 18:03:32 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/02/28 18:07:25 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/03/03 11:08:46 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void ft_free_strtab(char **strtab)
+void	ft_free_strtab(char **strtab)
 {
 	int i;
 

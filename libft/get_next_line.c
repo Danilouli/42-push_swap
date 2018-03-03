@@ -6,7 +6,7 @@
 /*   By: schmurz <schmurz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/03 18:04:26 by schmurz           #+#    #+#             */
-/*   Updated: 2018/02/04 13:01:04 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/03/03 11:16:27 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static int	read_when_line(char **line, char **kp, char *pt)
 	return (1);
 }
 
-int	get_next_line(const int fd, char **line)
+int			get_next_line(const int fd, char **line)
 {
 	char		*b;
 	static char *kp[256] = {"\0"};
