@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/04 12:30:58 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/03/03 19:38:31 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/03/03 20:23:08 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void	checker(t_pile *apile, t_pile *bpile, int verb)
 
 	(verb) ? ft_putendl("On commence le checker :") : (verb = verb * 1);
 	(verb) ? view_piles(*apile, *bpile) : (verb = verb * 1);
-	while (get_next_line(0, &line))
+	while (get_next_line(0, &line) > 0)
 	{
 		(verb) ? ft_printf("\n--\nCommande : %s\n", line) : (verb = verb * 1);
 		if_forest(apile, bpile, line);
