@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 12:49:50 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/03/03 11:49:14 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/03/03 12:29:47 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,8 @@ t_pile	copy_pile(t_pile pile)
 
 	simpile.len = pile.len;
 	simpile.name = pile.name;
-	simpile.vals = (int*)malloc(sizeof(int) * (simpile.len));
+	if (!(simpile.vals = (int*)malloc(sizeof(int) * (simpile.len))))
+		exit(EXIT_FAILURE);
 	simpile.vals = ft_int_tab_cpy(simpile.vals, pile.vals, simpile.len);
 	return (simpile);
 }
