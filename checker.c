@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/04 12:30:58 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/03/03 11:46:03 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/03/03 19:04:35 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,8 @@ int			main(int argc, char **argv)
 	apile = get_apile(argv, &verb, argc);
 	if (apile.len == -1)
 	{
-		ft_putendl_fd("Error", 2);
+		if (argc > 1)
+			ft_putendl_fd("Error", 2);
 		return (1);
 	}
 	bpile = create_b(apile.len);
