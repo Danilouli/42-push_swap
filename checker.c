@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/04 12:30:58 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/03/01 18:19:04 by schmurz          ###   ########.fr       */
+/*   Updated: 2018/03/03 10:57:09 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,13 @@ static int bad_command(char *line)
 	&& !ft_strequ(line, "rrr"));
 }
 
-static void checker(t_pile *apile, t_pile *bpile, int flen, int verb)
+static void checker(t_pile *apile, t_pile *bpile, int verb)
 {
 	char *line;
 
 	(verb) ? ft_putendl("On commence le checker :") : (verb = verb * 1) ;
 	(verb) ? view_piles(*apile, *bpile) : (verb = verb * 1) ;
-	while (!(arr_sort_asc(apile->vals, apile->len) && apile->len == flen)
-	&& get_next_line(0, &line))
+	while (get_next_line(0, &line))
 	{
 		(verb) ? ft_printf("\n------\nCommande : %s\n",line) : (verb = verb * 1);
 		if_forest(apile, bpile, line);
@@ -109,7 +108,7 @@ int main(int argc, char **argv) {
 	}
 	bpile = create_b(apile.len);
 	flen = apile.len;
-	checker(&apile, &bpile, flen, verb);
+	checker(&apile, &bpile, verb);
 	(arr_sort_asc(apile.vals, apile.len) && apile.len == flen) ?
 	ft_putendl("OK") : ft_putendl("KO");
 	(verb) ? ft_putendl("Resultat :") : (verb = verb * 1) ;
