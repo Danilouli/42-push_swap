@@ -6,7 +6,7 @@
 /*   By: schmurz <schmurz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/27 17:03:10 by schmurz           #+#    #+#             */
-/*   Updated: 2018/03/03 11:51:56 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/03/03 19:30:03 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	pile_is_sort(t_pile pile)
 	simpile.vals = (int*)malloc(sizeof(int) * (simpile.len));
 	ft_int_tab_cpy(simpile.vals, pile.vals, simpile.len);
 	i = 0;
-	while (i <= simpile.len)
+	while (i <= simpile.len + 1)
 	{
 		if (arr_sort_asc(simpile.vals, simpile.len))
 		{

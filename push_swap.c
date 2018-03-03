@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 16:15:48 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/03/03 19:04:31 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/03/03 19:36:23 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,18 +122,18 @@ int		main(int argc, char **argv)
 	t_pile simpile;
 
 	apile = get_ps_apile(argv, argc);
-	if (apile.len == -1)
+	if (apile.len == -1 && ft_free_all(1, apile.vals))
 	{
 		if (argc > 1)
 			ft_putendl_fd("Error", 2);
 		return (1);
 	}
 	simpile = copy_pile(apile);
-	bpile = create_b(apile.len);
-	if (!arr_sort_asc(apile.vals, apile.len))
+	if (!arr_sort_asc(simpile.vals, simpile.len))
 		keeppile = pile_max_order(simpile);
 	else
 		keeppile.len = -1;
+	bpile = create_b(apile.len);
 	push_max_order(&apile, &bpile, &keeppile);
 	rotate_finish(&apile);
 	ft_lstreverse(&g_ops);
