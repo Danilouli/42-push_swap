@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/04 12:30:58 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/03/03 20:23:08 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/03/05 16:58:14 by schmurz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,27 +15,27 @@
 static void	if_forest(t_pile *apile, t_pile *bpile, char *line)
 {
 	if (ft_strequ(line, "sa"))
-		swap(apile, 0);
+		swap(apile, 0, NULL);
 	else if (ft_strequ(line, "sb"))
-		swap(bpile, 0);
+		swap(bpile, 0, NULL);
 	else if (ft_strequ(line, "ss"))
-		sswap(apile, bpile, 0);
+		sswap(apile, bpile, 0, NULL);
 	else if (ft_strequ(line, "pa"))
-		push(bpile, apile, 0);
+		push(bpile, apile, 0, NULL);
 	else if (ft_strequ(line, "pb"))
-		push(apile, bpile, 0);
+		push(apile, bpile, 0, NULL);
 	else if (ft_strequ(line, "ra"))
-		rotate(apile, 0);
+		rotate(apile, 0, NULL);
 	else if (ft_strequ(line, "rb"))
-		rotate(bpile, 0);
+		rotate(bpile, 0, NULL);
 	else if (ft_strequ(line, "rr"))
-		rrotate(apile, bpile, 0);
+		rrotate(apile, bpile, 0, NULL);
 	else if (ft_strequ(line, "rra"))
-		rev_rotate(apile, 0);
+		rev_rotate(apile, 0, NULL);
 	else if (ft_strequ(line, "rrb"))
-		rev_rotate(bpile, 0);
+		rev_rotate(bpile, 0, NULL);
 	else if (ft_strequ(line, "rrr"))
-		rrev_rotate(apile, bpile, 0);
+		rrev_rotate(apile, bpile, 0, NULL);
 }
 
 static int	bad_command(char *line)
