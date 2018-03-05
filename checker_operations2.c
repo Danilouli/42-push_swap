@@ -6,21 +6,21 @@
 /*   By: schmurz <schmurz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/01 18:27:20 by schmurz           #+#    #+#             */
-/*   Updated: 2018/03/03 11:36:56 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/03/05 15:19:48 by schmurz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	rrotate(t_pile *apile, t_pile *bpile, int wr)
+void	rrotate(t_pile *apile, t_pile *bpile, int wr, t_list **g_ops)
 {
-	rotate(apile, 0);
-	rotate(bpile, 0);
+	rotate(apile, 0, NULL);
+	rotate(bpile, 0, NULL);
 	if (wr)
-		ft_lstadd(&g_ops, ft_lstnew("rr", 3));
+		ft_lstadd(g_ops, ft_lstnew("rr", 3));
 }
 
-void	rev_rotate(t_pile *pile, int wr)
+void	rev_rotate(t_pile *pile, int wr, t_list **g_ops)
 {
 	int i;
 	int tmp;
@@ -36,9 +36,9 @@ void	rev_rotate(t_pile *pile, int wr)
 		(pile->vals)[0] = tmp;
 	}
 	if (wr && pile->name == 'A')
-		ft_lstadd(&g_ops, ft_lstnew("rra", 4));
+		ft_lstadd(g_ops, ft_lstnew("rra", 4));
 	if (wr && pile->name == 'B')
-		ft_lstadd(&g_ops, ft_lstnew("rrb", 4));
+		ft_lstadd(g_ops, ft_lstnew("rrb", 4));
 }
 
 void	rev_rotate_nc(t_pile pile)
@@ -58,28 +58,28 @@ void	rev_rotate_nc(t_pile pile)
 	}
 }
 
-void	rrev_rotate(t_pile *apile, t_pile *bpile, int wr)
+void	rrev_rotate(t_pile *apile, t_pile *bpile, int wr, t_list **g_ops)
 {
-	rev_rotate(apile, 0);
-	rev_rotate(bpile, 0);
+	rev_rotate(apile, 0, NULL);
+	rev_rotate(bpile, 0, NULL);
 	if (wr)
-		ft_lstadd(&g_ops, ft_lstnew("rrr", 4));
+		ft_lstadd(g_ops, ft_lstnew("rrr", 4));
 }
 
-void	push(t_pile *from_pile, t_pile *to_pile, int wr)
+void	push(t_pile *from_pile, t_pile *to_pile, int wr, t_list **g_ops)
 {
 	if (from_pile->len > 0)
 	{
 		(to_pile->len)++;
 		(to_pile->vals)[(to_pile->len) - 1] = 0;
-		rev_rotate(to_pile, 0);
+		rev_rotate(to_pile, 0, NULL);
 		(to_pile->vals)[0] = (from_pile->vals)[0];
-		rotate(from_pile, 0);
+		rotate(from_pile, 0, NULL);
 		(from_pile->vals)[(from_pile->len) - 1] = 0;
 		(from_pile->len)--;
 	}
 	if (wr && from_pile->name == 'A')
-		ft_lstadd(&g_ops, ft_lstnew("pb", 3));
+		ft_lstadd(g_ops, ft_lstnew("pb", 3));
 	if (wr && from_pile->name == 'B')
-		ft_lstadd(&g_ops, ft_lstnew("pa", 3));
+		ft_lstadd(g_ops, ft_lstnew("pa", 3));
 }

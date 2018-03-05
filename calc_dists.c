@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 12:48:08 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/03/03 11:27:44 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/03/05 14:23:47 by schmurz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ int	dist_rrotating(t_pile apile, t_pile bpile, t_pile keeppile)
 	while (!(good_to_push(asimpile, bsimpile.vals[0], keeppile))
 	&& i <= apile.len)
 	{
-		rrotate(&asimpile, &bsimpile, 0);
+		rrotate(&asimpile, &bsimpile, 0, NULL);
 		i++;
 	}
 	free(bsimpile.vals);

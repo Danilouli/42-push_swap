@@ -6,7 +6,7 @@
 /*   By: schmurz <schmurz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/01 18:33:50 by schmurz           #+#    #+#             */
-/*   Updated: 2018/03/03 12:03:07 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/03/05 15:45:11 by schmurz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	rotate_a_or_both(t_pile *apile, t_pile *bpile, t_pile *keeppile)
 
 	asimpile = copy_pile(*apile);
 	bsimpile = copy_pile(*bpile);
-	rrotate(&asimpile, &bsimpile, 0);
+	rrotate(&asimpile, &bsimpile, 0, NULL);
 	if (good_to_push(asimpile, bpile->vals[0], *keeppile))
 	{
 		free(asimpile.vals);
@@ -50,4 +50,18 @@ int	rotate_a_or_both(t_pile *apile, t_pile *bpile, t_pile *keeppile)
 	free(asimpile.vals);
 	free(bsimpile.vals);
 	return (0);
+}
+
+t_pile create_keeppile(t_pile apile)
+{
+	t_pile simpile;
+	t_pile keeppile;
+
+	simpile = copy_pile(apile);
+	if (!arr_sort_asc(simpile.vals, simpile.len))
+		keeppile = pile_max_order(simpile);
+	else
+		keeppile.len = -1;
+	free(simpile.vals);
+	return (keeppile);
 }

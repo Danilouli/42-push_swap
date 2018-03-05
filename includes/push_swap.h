@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/04 14:34:34 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/03/03 11:23:45 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/03/05 15:58:50 by schmurz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ typedef struct		s_pile
 
 t_pile				create_a(char **nums);
 t_pile				create_b(int blen);
-void				swap(t_pile *pile, int wr);
-void				sswap(t_pile *apile, t_pile *bpile, int wr);
-void				rotate(t_pile *pile, int wr);
-void				rrotate(t_pile *apile, t_pile *bpile, int wr);
-void				rev_rotate(t_pile *pile, int wr);
-void				rrev_rotate(t_pile *apile, t_pile *bpile, int wr);
-void				push(t_pile *from_pile, t_pile *to_pile, int wr);
+void				swap(t_pile *pile, int wr, t_list **g_ops);
+void				sswap(t_pile *apile, t_pile *bpile, int wr, t_list **g_ops);
+void				rotate(t_pile *pile, int wr, t_list **g_ops);
+void				rrotate(t_pile *apile, t_pile *bpile, int wr, t_list **g_ops);
+void				rev_rotate(t_pile *pile, int wr, t_list **g_ops);
+void				rrev_rotate(t_pile *apile, t_pile *bpile, int wr, t_list **g_ops);
+void				push(t_pile *from_pile, t_pile *to_pile, int wr, t_list **g_ops);
 void				view_pile(t_pile pile);
 void				rotate_nc(t_pile pile);
 void				rev_rotate_nc(t_pile pile);
@@ -65,7 +65,6 @@ void				print_delete_g_ops(t_list *lst);
 int					rotate_a_or_both(t_pile *bpile, t_pile *apile,
 					t_pile *keeppile);
 int					final_rra_or_ra(t_pile apile);
-
-t_list *g_ops;
+t_pile			create_keeppile(t_pile apile);
 
 #endif
