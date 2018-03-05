@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 15:16:51 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/03/05 15:38:34 by schmurz          ###   ########.fr       */
+/*   Updated: 2018/03/05 17:43:18 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,13 +96,9 @@ void		print_delete_g_ops(t_list *lst)
 	while (lst)
 	{
 		ft_putendl((char*)(lst->content));
-		lst = lst->next;
-	}
-	while (k)
-	{
-		lst = k;
-		k = k->next;
 		free(lst->content);
-		free(lst);
+		k = lst;
+		lst = lst->next;
+		free(k);
 	}
 }

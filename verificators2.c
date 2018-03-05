@@ -6,13 +6,13 @@
 /*   By: schmurz <schmurz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/01 18:33:50 by schmurz           #+#    #+#             */
-/*   Updated: 2018/03/05 15:45:11 by schmurz          ###   ########.fr       */
+/*   Updated: 2018/03/05 18:10:49 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	good_to_swap(t_pile *apile, t_pile *keeppile)
+int		good_to_swap(t_pile *apile, t_pile *keeppile)
 {
 	if (!ft_in_array((apile->vals)[0], keeppile->vals, keeppile->len)
 				&& ft_in_array((apile->vals)[1], keeppile->vals, keeppile->len)
@@ -33,7 +33,7 @@ int	good_to_swap(t_pile *apile, t_pile *keeppile)
 	return (-1);
 }
 
-int	rotate_a_or_both(t_pile *apile, t_pile *bpile, t_pile *keeppile)
+int		rotate_a_or_both(t_pile *apile, t_pile *bpile, t_pile *keeppile)
 {
 	t_pile asimpile;
 	t_pile bsimpile;
@@ -52,7 +52,7 @@ int	rotate_a_or_both(t_pile *apile, t_pile *bpile, t_pile *keeppile)
 	return (0);
 }
 
-t_pile create_keeppile(t_pile apile)
+t_pile	create_keeppile(t_pile apile)
 {
 	t_pile simpile;
 	t_pile keeppile;

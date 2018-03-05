@@ -6,13 +6,14 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 16:15:48 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/03/05 16:04:00 by schmurz          ###   ########.fr       */
+/*   Updated: 2018/03/05 18:08:17 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	min_mover(t_pile *apile, t_pile *bpile, t_pile *keeppile, t_list **g_ops)
+void	min_mover(t_pile *apile, t_pile *bpile, t_pile *keeppile,
+		t_list **g_ops)
 {
 	int	d[6];
 
@@ -41,7 +42,8 @@ void	min_mover(t_pile *apile, t_pile *bpile, t_pile *keeppile, t_list **g_ops)
 		rev_rotate(bpile, 1, g_ops);
 }
 
-int		first_cases(t_pile *apile, t_pile *bpile, t_pile *keeppile, t_list **g_ops)
+int		first_cases(t_pile *apile, t_pile *bpile, t_pile *keeppile,
+		t_list **g_ops)
 {
 	int gts;
 
@@ -68,7 +70,8 @@ int		first_cases(t_pile *apile, t_pile *bpile, t_pile *keeppile, t_list **g_ops)
 	return (0);
 }
 
-void	push_max_order(t_pile *apile, t_pile *bpile, t_pile *keeppile, t_list **g_ops)
+void	push_max_order(t_pile *apile, t_pile *bpile, t_pile *keeppile,
+		t_list **g_ops)
 {
 	int final_len;
 	int is_sort;
