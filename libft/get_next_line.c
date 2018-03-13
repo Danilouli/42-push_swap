@@ -6,7 +6,7 @@
 /*   By: schmurz <schmurz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/03 18:04:26 by schmurz           #+#    #+#             */
-/*   Updated: 2018/03/13 18:46:20 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/03/13 19:20:18 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static int	read_when_line(char **line, char **kp, char *pt)
 	return (1);
 }
 
-static int safe_return(int r, char **kp, char **line)
+static int	safe_return(int r, char **kp, char **line)
 {
 	int ret;
 
@@ -71,7 +71,7 @@ static int safe_return(int r, char **kp, char **line)
 	return (ret);
 }
 
-static int safe_quit(char **b)
+static int	safe_quit(char **b)
 {
 	if (*b)
 		free(*b);

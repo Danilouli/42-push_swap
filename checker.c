@@ -6,7 +6,7 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/04 12:30:58 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/03/13 18:57:32 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/03/13 19:19:33 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,11 @@ static int	bad_command(char *line)
 static void	checker(t_pile *apile, t_pile *bpile, int verb)
 {
 	char *line;
-	int g;
 	char *k;
 
-	g = 0;
 	(verb) ? ft_putendl("On commence le checker :") : (verb = verb * 1);
 	(verb) ? view_piles(*apile, *bpile) : (verb = verb * 1);
-	while ((g = get_next_line(0, &line)) > 0)
+	while (get_next_line(0, &line) > 0)
 	{
 		k = line;
 		(verb) ? ft_printf("\n--\nCommande : %s\n", line) : (verb = verb * 1);
@@ -71,8 +69,6 @@ static void	checker(t_pile *apile, t_pile *bpile, int verb)
 		free(line);
 		(verb) ? view_piles(*apile, *bpile) : (verb = verb * 1);
 	}
-	if (g == -1)
-		free(line);
 }
 
 t_pile		get_apile(char **argv, int *verb, int argc)
