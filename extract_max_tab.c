@@ -6,7 +6,7 @@
 /*   By: schmurz <schmurz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/27 08:31:23 by schmurz           #+#    #+#             */
-/*   Updated: 2018/03/05 15:44:43 by schmurz          ###   ########.fr       */
+/*   Updated: 2018/03/17 20:52:38 by dsaadia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,8 @@ t_pile		max_order_in_tab(int *x, int n)
 	if (!(p.vals = (int*)malloc(sizeof(int) * n)))
 		exit(EXIT_FAILURE);
 	ret.len = 1;
-	ret.vals = (int*)malloc(sizeof(int) * n);
+	if (!(ret.vals = (int*)malloc(sizeof(int) * n)))
+		exit(EXIT_FAILURE);
 	m.vals[0] = 0;
 	ret.len = fill_m_and_p(&m, &p, x, n);
 	fill_ret(&ret, m, p, x);
