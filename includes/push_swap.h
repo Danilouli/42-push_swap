@@ -6,13 +6,12 @@
 /*   By: dsaadia <dsaadia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/04 14:34:34 by dsaadia           #+#    #+#             */
-/*   Updated: 2018/03/05 18:09:49 by dsaadia          ###   ########.fr       */
+/*   Updated: 2018/03/19 08:46:19 by schmurz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
-# define LPE(Pile,Offset) (Pile).vals[(Pile).len - Offset]
 
 # include "libft.h"
 
